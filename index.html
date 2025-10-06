@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="./index.css">
+  
+  <title>Weather app</title>
+
+
+</head>
+<body>
+  <div class="navbar">
+    
+      <div class="navbar-logo">
+        <img src="./assets/images/logo.svg" alt="logo">
+      </div>
+      
+    
+    <div class="navbar-menu">
+      <div class="units-area">
+        <img class="units-icon" src="./assets/images/icon-units.svg" alt="units">
+        <button class="units-trigger" aria-haspopup="true" aria-expanded="false">Units</button>
+        <div class="units-menu" hidden>
+          <button class="menu-item switch">Switch to Imperial</button>
+          <div class="menu-divider"></div>
+          <div class="menu-section">Temperature</div>
+          <button class="menu-item active">Celsius (°C)<img class="menu-check" src="./assets/images/icon-checkmark.svg" alt="selected"></button>
+          <button class="menu-item">Fahrenheit (°F)</button>
+          <div class="menu-divider"></div>
+          <div class="menu-section">Wind Speed</div>
+          <button class="menu-item active">km/h<img class="menu-check" src="./assets/images/icon-checkmark.svg" alt="selected"></button>
+          <button class="menu-item">mph</button>
+          <div class="menu-divider"></div>
+          <div class="menu-section">Precipitation</div>
+          <button class="menu-item active">Millimeters (mm)<img class="menu-check" src="./assets/images/icon-checkmark.svg" alt="selected"></button>
+          <button class="menu-item">Inches (in)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="search-bar-text">How is the sky looking today?</p>
+  <div class="search-area">
+    <div class="search-bar">
+      <input type="text" placeholder="Search for a place...">
+    </div>
+    <button class="search-button">Search</button>
+  </div>
+
+  <div class="degreescontainer">
+    <div class="degleft">
+      <div class="berlin">
+        <div class="berlin-left">
+          <p class="berlin-text">Berlin, Germany</p>
+          <p class="berlin-date">Tuesday,Aug 5, 2025</p>
+        </div>
+        <p class="berlin-temp">68°</p>
+        
+      </div>
+
+      <div class="under">
+        <div class="weatherinfo">
+          <p class="topcomment">Feels Like</p>
+          <p class="lowercomment">64°</p>
+        </div>
+        <div class="weatherinfo">
+          <p class="topcomment">Humidity</p>
+          <p class="lowercomment">60%</p>
+        </div>
+        <div class="weatherinfo">
+          <p class="topcomment">Wind</p>
+          <p class="lowercomment">90 mph</p>
+        </div>
+        <div class="weatherinfo">
+          <p class="topcomment">Precipitation</p>
+          <p class="lowercomment">0 in</p>
+        </div>
+      </div>
+
+      <p class="dailyforecast">Daily Forecast</p>
+       <div class="dailyforecastvalues">
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+         <div class="valuebox">
+           <div class="value-day">TUE</div>
+           <img class="value-icon" src="./assets/images/icon-partly-cloudy.webp" alt="partly cloudy">
+           <div class="value-temps">
+             <span class="value-high">68°</span>
+             <span class="value-low">57°</span>
+           </div>
+         </div>
+       </div>
+
+      
+      
+      
+    </div>
+    <div class="degright">
+      <div class="hourly">
+        <div class="hour">Hourly Forecast</div>
+          <div class="date day-area">
+            <button class="day-trigger" aria-haspopup="true" aria-expanded="false">Monday</button>
+            <div class="day-menu" hidden>
+              <button class="day-item active">Monday</button>
+              <button class="day-item">Tuesday</button>
+              <button class="day-item">Wednesday</button>
+              <button class="day-item">Thursday</button>
+              <button class="day-item">Friday</button>
+              <button class="day-item">Saturday</button>
+              <button class="day-item">Sunday</button>
+            </div>
+          </div>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">10:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">11:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">12:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">12:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">12:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">12:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">12:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">12:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+
+   
+
+
+      
+      </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+<script>
+  (function(){
+    const trigger = document.querySelector('.units-trigger');
+    const menu = document.querySelector('.units-menu');
+    if(!trigger || !menu) return;
+    function close(){ menu.hidden = true; trigger.setAttribute('aria-expanded','false'); }
+    trigger.addEventListener('click', (e)=>{
+      const isOpen = menu.hidden === false;
+      if(isOpen){ close(); }
+      else{ menu.hidden = false; trigger.setAttribute('aria-expanded','true'); }
+      e.stopPropagation();
+    });
+    document.addEventListener('click', (e)=>{
+      if(!menu.hidden && !menu.contains(e.target) && e.target !== trigger){
+        close();
+      }
+    });
+  })();
+  (function(){
+    const trigger = document.querySelector('.day-trigger');
+    const menu = document.querySelector('.day-menu');
+    if(!trigger || !menu) return;
+    const items = menu.querySelectorAll('.day-item');
+    function close(){ menu.hidden = true; trigger.setAttribute('aria-expanded','false'); }
+    trigger.addEventListener('click', (e)=>{
+      const isOpen = menu.hidden === false;
+      if(isOpen){ close(); }
+      else{ menu.hidden = false; trigger.setAttribute('aria-expanded','true'); }
+      e.stopPropagation();
+    });
+    items.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        items.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        trigger.textContent = btn.textContent;
+        close();
+      });
+    });
+    document.addEventListener('click', (e)=>{
+      if(!menu.hidden && !menu.contains(e.target) && e.target !== trigger){
+        close();
+      }
+    });
+  })();
+ </script>
+</html>
