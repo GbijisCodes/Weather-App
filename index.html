@@ -245,6 +245,8 @@
     });
     items.forEach((btn, index)=>{
       btn.addEventListener('click', ()=>{
+        console.log('[v0] Day clicked:', btn.textContent);
+        
         items.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         trigger.textContent = btn.textContent;
@@ -259,9 +261,13 @@
         
         window.selectedDayOffset = offset;
         
+        console.log('[v0] Day offset calculated:', offset);
+        console.log('[v0] Weather data available:', !!window.lastWeatherData);
+        
         if(window.lastWeatherData){
-          updateHourly(window.lastWeatherData);
-          updateDaily(window.lastWeatherData);
+          console.log('[v0] Updating hourly and daily forecasts');
+          window.updateHourly(window.lastWeatherData);
+          window.updateDaily(window.lastWeatherData);
         }
         
         close();
@@ -317,6 +323,8 @@
     function buildHourlyRows(times, temps){
       const dayOffset = window.selectedDayOffset || 0;
       
+      console.log('[v0] Building hourly rows for day offset:', dayOffset);
+      
       const targetDate = new Date();
       targetDate.setDate(targetDate.getDate() + dayOffset);
       targetDate.setHours(0, 0, 0, 0);
@@ -337,11 +345,16 @@
         startTime.setHours(8, 0, 0, 0);
       }
 
+      console.log('[v0] Start time:', startTime);
+      console.log('[v0] End of day:', endOfDay);
+
       let startIdx = 0;
       for(let i=0; i<times.length; i++){
         const t = new Date(times[i]);
         if(t >= startTime){ startIdx = i; break; }
       }
+
+      console.log('[v0] Start index:', startIdx);
 
       const rows = [];
       for(let offset=0; offset<8 && startIdx + offset < times.length && startIdx + offset < temps.length; offset++){
@@ -362,16 +375,23 @@
         `;
         rows.push(row);
       }
+      
+      console.log('[v0] Built', rows.length, 'hourly rows');
       return rows;
     }
 
     function updateHourly(data){
+      console.log('[v0] updateHourly called');
       if(!hourlyContainer) return;
       const existing = hourlyContainer.querySelectorAll('.timedegree');
+      console.log('[v0] Removing', existing.length, 'existing rows');
       existing.forEach((el)=> el.remove());
       const rows = buildHourlyRows(data.hourly.time, data.hourly.temperature_2m);
+      console.log('[v0] Adding', rows.length, 'new rows');
       rows.forEach(r=> hourlyContainer.appendChild(r));
     }
+
+    window.updateHourly = updateHourly;
 
     function updateDaily(data){
       const dailyContainer = document.querySelector('.dailyforecastvalues');
@@ -396,7 +416,6 @@
         if(highEl) highEl.textContent = formatTemp(data.daily.temperature_2m_max[index]);
         if(lowEl) lowEl.textContent = formatTemp(data.daily.temperature_2m_min[index]);
         
-        // Highlight the selected day
         if(index === dayOffset){
           box.style.opacity = '1';
           box.style.transform = 'scale(1.05)';
@@ -424,8 +443,8 @@
             window.lastWeatherData = data;
             setLocationHeader('Your Location');
             updateCurrent(data); 
-            updateHourly(data);
-            updateDaily(data);
+            window.updateHourly(data);
+            window.updateDaily(data);
             resolve();
           }, reject, { enableHighAccuracy:true, timeout:5000 });
         });
@@ -434,8 +453,8 @@
         window.lastWeatherData = data;
         setLocationHeader('Berlin, Germany');
         updateCurrent(data); 
-        updateHourly(data);
-        updateDaily(data);
+        window.updateHourly(data);
+        window.updateDaily(data);
       }
     }
 
@@ -456,8 +475,8 @@
         window.lastWeatherData = data;
         setLocationHeader(`${place.name}, ${place.country_code || ''}`.trim());
         updateCurrent(data); 
-        updateHourly(data);
-        updateDaily(data);
+        window.updateHourly(data);
+        window.updateDaily(data);
         hideResults();
       }catch(e){ console.error(e); }
     }
@@ -493,8 +512,8 @@
             window.lastWeatherData = data;
             setLocationHeader(btn.textContent || '');
             updateCurrent(data); 
-            updateHourly(data);
-            updateDaily(data);
+            window.updateHourly(data);
+            window.updateDaily(data);
           }catch(err){ console.error(err); }
           hideResults();
         });
@@ -535,8 +554,8 @@
           const data = await fetchWeather();
           window.lastWeatherData = data;
           updateCurrent(data); 
-          updateHourly(data);
-          updateDaily(data);
+          window.updateHourly(data);
+          window.updateDaily(data);
         }catch(err){ console.error(err); }
       });
     }
