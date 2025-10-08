@@ -20,15 +20,15 @@
           <button class="menu-item switch">Switch to Imperial</button>
           <div class="menu-divider"></div>
           <div class="menu-section">Temperature</div>
-          <button class="menu-item active">Celsius (°C)<img class="menu-check" src="./assets/images/icon-checkmark.svg" alt="selected"></button>
+          <button class="menu-item active">Celsius (°C)</button>
           <button class="menu-item">Fahrenheit (°F)</button>
           <div class="menu-divider"></div>
           <div class="menu-section">Wind Speed</div>
-          <button class="menu-item active">km/h<img class="menu-check" src="./assets/images/icon-checkmark.svg" alt="selected"></button>
+          <button class="menu-item active">km/h</button>
           <button class="menu-item">mph</button>
           <div class="menu-divider"></div>
           <div class="menu-section">Precipitation</div>
-          <button class="menu-item active">Millimeters (mm)<img class="menu-check" src="./assets/images/icon-checkmark.svg" alt="selected"></button>
+          <button class="menu-item active">Millimeters (mm)</button>
           <button class="menu-item">Inches (in)</button>
         </div>
       </div>
@@ -174,42 +174,113 @@
       <div class="timedegree">
         <div class="time-left">
           <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
-          <span class="time-text">12:00</span>
+          <span class="time-text">13:00</span>
         </div>
         <span class="time-deg">64°</span>
       </div>
       <div class="timedegree">
         <div class="time-left">
           <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
-          <span class="time-text">12:00</span>
+          <span class="time-text">14:00</span>
         </div>
         <span class="time-deg">64°</span>
       </div>
       <div class="timedegree">
         <div class="time-left">
           <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
-          <span class="time-text">12:00</span>
+          <span class="time-text">15:00</span>
         </div>
         <span class="time-deg">64°</span>
       </div>
       <div class="timedegree">
         <div class="time-left">
           <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
-          <span class="time-text">12:00</span>
+          <span class="time-text">16:00</span>
         </div>
         <span class="time-deg">64°</span>
       </div>
       <div class="timedegree">
         <div class="time-left">
           <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
-          <span class="time-text">12:00</span>
+          <span class="time-text">17:00</span>
         </div>
         <span class="time-deg">64°</span>
       </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">18:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">19:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">20:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">21:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">22:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <div class="timedegree">
+        <div class="time-left">
+          <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="cloud">
+          <span class="time-text">23:00</span>
+        </div>
+        <span class="time-deg">64°</span>
+      </div>
+      <button id="viewMoreBtn" class="view-more-btn" >View More</button>
     </div>
   </div>
 </body>
 <script>
+  
+  // Select all the menu sections
+  const sections = document.querySelectorAll('.menu-section');
+
+  sections.forEach(section => {
+    // Get all menu items after each section heading
+    let next = section.nextElementSibling;
+    const items = [];
+
+    // Collect all consecutive menu-item buttons until the next divider or section
+    while (next && next.classList.contains('menu-item')) {
+      items.push(next);
+      next = next.nextElementSibling;
+    }
+
+    // Add click events for each button in this section
+    items.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active from all in that section
+        items.forEach(b => b.classList.remove('active'));
+        // Add active to the clicked one
+        button.classList.add('active');
+      });
+    });
+  });
+
+
+  
   (function(){
     const trigger = document.querySelector('.units-trigger');
     const menu = document.querySelector('.units-menu');
@@ -245,8 +316,6 @@
     });
     items.forEach((btn, index)=>{
       btn.addEventListener('click', ()=>{
-        console.log('[v0] Day clicked:', btn.textContent);
-        
         items.forEach(b=>b.classList.remove('active'));
         btn.classList.add('active');
         trigger.textContent = btn.textContent;
@@ -261,11 +330,7 @@
         
         window.selectedDayOffset = offset;
         
-        console.log('[v0] Day offset calculated:', offset);
-        console.log('[v0] Weather data available:', !!window.lastWeatherData);
-        
         if(window.lastWeatherData){
-          console.log('[v0] Updating hourly and daily forecasts');
           window.updateHourly(window.lastWeatherData);
           window.updateDaily(window.lastWeatherData);
         }
@@ -292,6 +357,8 @@
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const resultsEl = document.getElementById('searchResults');
+    const viewMoreBtn = document.getElementById('viewMoreBtn');
+    let isExpanded = false;
 
     let units = { temp: 'c', wind: 'kmh' };
     let lastCoords = { lat: 52.52, lon: 13.41 };
@@ -323,8 +390,6 @@
     function buildHourlyRows(times, temps){
       const dayOffset = window.selectedDayOffset || 0;
       
-      console.log('[v0] Building hourly rows for day offset:', dayOffset);
-      
       const targetDate = new Date();
       targetDate.setDate(targetDate.getDate() + dayOffset);
       targetDate.setHours(0, 0, 0, 0);
@@ -342,11 +407,8 @@
         startTime = rounded;
       } else {
         startTime = new Date(targetDate);
-        startTime.setHours(8, 0, 0, 0);
+        startTime.setHours(0, 0, 0, 0);
       }
-
-      console.log('[v0] Start time:', startTime);
-      console.log('[v0] End of day:', endOfDay);
 
       let startIdx = 0;
       for(let i=0; i<times.length; i++){
@@ -354,10 +416,8 @@
         if(t >= startTime){ startIdx = i; break; }
       }
 
-      console.log('[v0] Start index:', startIdx);
-
       const rows = [];
-      for(let offset=0; offset<8 && startIdx + offset < times.length && startIdx + offset < temps.length; offset++){
+      for(let offset=0; startIdx + offset < times.length && startIdx + offset < temps.length; offset++){
         const idx = startIdx + offset;
         const date = new Date(times[idx]);
         
@@ -366,6 +426,10 @@
         const hour = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
         const row = document.createElement('div');
         row.className = 'timedegree';
+        if(offset >= 8) {
+          row.style.display = 'none';
+          row.classList.add('extra-hour');
+        }
         row.innerHTML = `
           <div class="time-left">
             <img class="time-icon" src="./assets/images/icon-partly-cloudy.webp" alt="icon">
@@ -376,22 +440,57 @@
         rows.push(row);
       }
       
-      console.log('[v0] Built', rows.length, 'hourly rows');
       return rows;
     }
 
     function updateHourly(data){
-      console.log('[v0] updateHourly called');
       if(!hourlyContainer) return;
       const existing = hourlyContainer.querySelectorAll('.timedegree');
-      console.log('[v0] Removing', existing.length, 'existing rows');
       existing.forEach((el)=> el.remove());
+      
+      isExpanded = false;
+      
       const rows = buildHourlyRows(data.hourly.time, data.hourly.temperature_2m);
-      console.log('[v0] Adding', rows.length, 'new rows');
-      rows.forEach(r=> hourlyContainer.appendChild(r));
+      
+      rows.forEach(r=> {
+        if(viewMoreBtn) {
+          hourlyContainer.insertBefore(r, viewMoreBtn);
+        } else {
+          hourlyContainer.appendChild(r);
+        }
+      });
+      
+      if(viewMoreBtn) {
+        if(rows.length > 8) {
+          viewMoreBtn.style.display = 'block';
+          viewMoreBtn.textContent = 'View More';
+        } else {
+          viewMoreBtn.style.display = 'none';
+        }
+      }
     }
 
     window.updateHourly = updateHourly;
+
+    if(viewMoreBtn) {
+      viewMoreBtn.addEventListener('click', () => {
+        const extraHours = hourlyContainer.querySelectorAll('.extra-hour');
+        
+        if(isExpanded) {
+          extraHours.forEach(hour => {
+            hour.style.display = 'none';
+          });
+          viewMoreBtn.textContent = 'View More';
+          isExpanded = false;
+        } else {
+          extraHours.forEach(hour => {
+            hour.style.display = 'flex';
+          });
+          viewMoreBtn.textContent = 'View Less';
+          isExpanded = true;
+        }
+      });
+    }
 
     function updateDaily(data){
       const dailyContainer = document.querySelector('.dailyforecastvalues');
@@ -427,62 +526,6 @@
     }
     
     window.updateDaily = updateDaily;
-
-    function setLocationHeader(name){
-      if(locationNameEl) locationNameEl.textContent = name;
-      if(locationDateEl) locationDateEl.textContent = new Date().toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric', year:'numeric' });
-    }
-
-    async function geolocateAndLoad(){
-      try{
-        await new Promise((resolve, reject)=>{
-          if(!navigator.geolocation) return reject(new Error('no geolocation'));
-          navigator.geolocation.getCurrentPosition(async pos=>{
-            const { latitude, longitude } = pos.coords;
-            const data = await fetchWeather(latitude, longitude);
-            window.lastWeatherData = data;
-            setLocationHeader('Your Location');
-            updateCurrent(data); 
-            window.updateHourly(data);
-            window.updateDaily(data);
-            resolve();
-          }, reject, { enableHighAccuracy:true, timeout:5000 });
-        });
-      }catch(e){
-        const data = await fetchWeather(52.52, 13.41);
-        window.lastWeatherData = data;
-        setLocationHeader('Berlin, Germany');
-        updateCurrent(data); 
-        window.updateHourly(data);
-        window.updateDaily(data);
-      }
-    }
-
-    async function geocode(query, count=1){
-      const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=${count}`);
-      if(!res.ok) throw new Error('Geocoding failed');
-      const j = await res.json();
-      if(!j.results || !j.results.length) throw new Error('No results');
-      return count === 1 ? j.results[0] : j.results;
-    }
-
-    async function handleSearch(){
-      const q = searchInput?.value?.trim();
-      if(!q) return;
-      try{
-        const place = await geocode(q, 1);
-        const data = await fetchWeather(place.latitude, place.longitude);
-        window.lastWeatherData = data;
-        setLocationHeader(`${place.name}, ${place.country_code || ''}`.trim());
-        updateCurrent(data); 
-        window.updateHourly(data);
-        window.updateDaily(data);
-        hideResults();
-      }catch(e){ console.error(e); }
-    }
-
-    searchBtn?.addEventListener('click', handleSearch);
-    searchInput?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') handleSearch(); });
 
     function debounce(fn, ms){
       let t; return (...args)=>{ clearTimeout(t); t = setTimeout(()=>fn(...args), ms); };
@@ -560,11 +603,67 @@
       });
     }
 
+    async function geolocateAndLoad(){
+      try{
+        await new Promise((resolve, reject)=>{
+          if(!navigator.geolocation) return reject(new Error('no geolocation'));
+          navigator.geolocation.getCurrentPosition(async pos=>{
+            const { latitude, longitude } = pos.coords;
+            const data = await fetchWeather(latitude, longitude);
+            window.lastWeatherData = data;
+            setLocationHeader('Your Location');
+            updateCurrent(data); 
+            window.updateHourly(data);
+            window.updateDaily(data);
+            resolve();
+          }, reject, { enableHighAccuracy:true, timeout:5000 });
+        });
+      }catch(e){
+        const data = await fetchWeather(52.52, 13.41);
+        window.lastWeatherData = data;
+        setLocationHeader('Berlin, Germany');
+        updateCurrent(data); 
+        window.updateHourly(data);
+        window.updateDaily(data);
+      }
+    }
+
+    async function geocode(query, count=1){
+      const res = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(query)}&count=${count}`);
+      if(!res.ok) throw new Error('Geocoding failed');
+      const j = await res.json();
+      if(!j.results || !j.results.length) throw new Error('No results');
+      return count === 1 ? j.results[0] : j.results;
+    }
+
+    async function handleSearch(){
+      const q = searchInput?.value?.trim();
+      if(!q) return;
+      try{
+        const place = await geocode(q, 1);
+        const data = await fetchWeather(place.latitude, place.longitude);
+        window.lastWeatherData = data;
+        setLocationHeader(`${place.name}, ${place.country_code || ''}`.trim());
+        updateCurrent(data); 
+        window.updateHourly(data);
+        window.updateDaily(data);
+        hideResults();
+      }catch(e){ console.error(e); }
+    }
+
+    searchBtn?.addEventListener('click', handleSearch);
+    searchInput?.addEventListener('keydown', (e)=>{ if(e.key==='Enter') handleSearch(); });
+
+    function setLocationHeader(name){
+      if(locationNameEl) locationNameEl.textContent = name;
+      if(locationDateEl) locationDateEl.textContent = new Date().toLocaleDateString(undefined, { weekday:'long', month:'short', day:'numeric', year:'numeric' });
+    }
+
     geolocateAndLoad();
     if(dayTrigger){
       const today = new Date().toLocaleDateString(undefined,{ weekday:'long' });
       dayTrigger.textContent = today;
     }
   })();
- </script>
+</script>
 </html>
