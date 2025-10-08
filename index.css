@@ -618,6 +618,7 @@ body {
   }
   .hour {
     font-size: 12px;
+    color: white;
   }
   .hourly {
     gap: 8px;
