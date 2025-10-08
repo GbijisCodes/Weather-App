@@ -353,6 +353,7 @@ body {
 .hour {
   font-family: DmSansBold;
   font-size: 14px;
+  color: white;
 }
 .hourly {
   display: flex;
